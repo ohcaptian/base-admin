@@ -13,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.Id;
@@ -155,5 +156,15 @@ public class CommonServiceImpl<V, E, T> implements CommonService<V, E, T> {
     public Result<T> delete(T id) {
         commonRepository.deleteById(id);
         return Result.of(id);
+    }
+
+    @Override
+    public Page<E> findAll(Pageable pageable) {
+       return commonRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<E> findAll() {
+        return commonRepository.findAll();
     }
 }

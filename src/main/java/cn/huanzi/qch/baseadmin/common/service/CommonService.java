@@ -3,6 +3,8 @@ package cn.huanzi.qch.baseadmin.common.service;
 
 import cn.huanzi.qch.baseadmin.common.pojo.PageInfo;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -24,4 +26,7 @@ public interface CommonService<V, E,T> {
     Result<V> save(V entityVo);
 
     Result<T> delete(T id);
+
+    public Page<E> findAll(Pageable pageable);
+    public List<E> findAll();
 }
