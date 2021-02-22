@@ -18,4 +18,8 @@ public class OpenApiController {
     public Result<String> test() {
         return openApiService.test();
     }
+    @GetMapping("test/hello")
+    public String hello(){
+        return "hello";
+    }
 }

@@ -167,4 +167,5 @@ public class CommonServiceImpl<V, E, T> implements CommonService<V, E, T> {
     public List<E> findAll() {
         return commonRepository.findAll();
     }
+
 }

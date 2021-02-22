@@ -5,7 +5,9 @@ import java.io.Serializable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Description  
@@ -60,8 +62,10 @@ public class BlogEntity  implements Serializable {
 
    	@Column(name = "update_time" )
 	private Date updateTime;
-
-   	@Column(name = "type_id" )
+	/**
+	 *
+	 */
+	@Column(name = "type_id",insertable=false,updatable=false)
 	private Long typeId;
 
    	@Column(name = "user_id" )
@@ -70,6 +74,36 @@ public class BlogEntity  implements Serializable {
    	@Column(name = "description" )
 	private String description;
 
-   	@Column(name = "tag_ids" )
+   	@Column(name = "tag_ids",insertable=false,updatable=false)
 	private String tagIds;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private TypeEntity type;//
+
+	@Transient
+	private List<TagEntity> tags = new ArrayList<>();//Blog = Tag 多对多
+//	@OneToMany
+//	private List<CommentEntity> comments = new ArrayList<>();//一对多映射
+	public void init(){
+		this.tagIds = tagsToIds(this.getTags());
+	}
+
+	//将tags集合转换为tagIds字符串形式：“1,2,3”,用于编辑博客时显示博客的tag
+	private String tagsToIds(List<TagEntity> tags){
+		if(!tags.isEmpty()){
+			StringBuffer ids = new StringBuffer();
+			boolean flag = false;
+			for(TagEntity tag: tags){
+				if(flag){
+					ids.append(",");
+				}else {
+					flag = true;
+				}
+				ids.append(tag.getId());
+			}
+			return ids.toString();
+		}else {
+			return tagIds;
+		}
+	}
 }

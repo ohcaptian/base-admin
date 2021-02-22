@@ -13,7 +13,6 @@ import java.util.List;
  *
  * @param <V> 实体类Vo
  * @param <E> 实体类
- * @param <T> id主键类型
  */
 public interface CommonService<V, E,T> {
 
@@ -27,6 +26,7 @@ public interface CommonService<V, E,T> {
 
     Result<T> delete(T id);
 
-    public Page<E> findAll(Pageable pageable);
-    public List<E> findAll();
+     Page<E> findAll(Pageable pageable);
+     List<E> findAll();
+
 }
