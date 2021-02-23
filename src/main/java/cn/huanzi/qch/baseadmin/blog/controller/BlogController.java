@@ -12,6 +12,7 @@ import cn.huanzi.qch.baseadmin.blog.service.TypeService;
 import cn.huanzi.qch.baseadmin.blog.vo.BlogVo;
 import cn.huanzi.qch.baseadmin.common.controller.CommonController;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,6 +31,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/admin/")
+@Slf4j
 public class BlogController extends CommonController<BlogEntity,BlogEntity,Long>{
        @Autowired
        private BlogService blogService;
@@ -43,9 +45,8 @@ public class BlogController extends CommonController<BlogEntity,BlogEntity,Long>
               model.addAttribute("tags", tagService.findAll());
        }
        @GetMapping("blogs")  //后台显示博客列表
-       public String page(Model model){
-           //@RequestParam  (required = false,defaultValue = "1",value = "page")int page,
-           Pageable pageable = PageRequest.of(0,4);
+       public String page(@RequestParam(required = false,defaultValue = "0",value = "pageNum")int pageNum,Model model){
+           Pageable pageable = PageRequest.of(pageNum,4);
            Page<BlogEntity> blogList = blogService.findAll(pageable);
            model.addAttribute("list", blogList);
            setTypeAndTag(model);  //查询类型和标签
