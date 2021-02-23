@@ -2,8 +2,14 @@ package cn.huanzi.qch.baseadmin.blog.pojo;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
+import com.sun.tracing.dtrace.ArgsAttributes;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +23,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name ="t_blog")
 public class BlogEntity  implements Serializable {
 
@@ -24,7 +31,7 @@ public class BlogEntity  implements Serializable {
 
 	@Id
    	@Column(name = "id" )
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
    	@Column(name = "title" )
@@ -38,29 +45,43 @@ public class BlogEntity  implements Serializable {
 
    	@Column(name = "flag" )
 	private String flag;
-
+	/**
+	 * 将views类型修改为string 是否出错未知
+	 */
    	@Column(name = "views" )
-	private Long views;
-
+	private String views;
+	/**
+	 * 将appreciation类型修改为string 是否出错未知
+	 */
    	@Column(name = "appreciation" )
-	private Long appreciation;
-
+	private String appreciation;
+	/**
+	 * 将shareStatement类型修改为string 是否出错未知
+	 */
    	@Column(name = "share_statement" )
-	private Long shareStatement;
-
+	private String shareStatement;
+	/**
+	 * 将commentabled类型修改为string 是否出错未知
+	 */
    	@Column(name = "commentabled" )
-	private Long commentabled;
-
+	private String commentabled;
+	/**
+	 * 将pubic类型修改为string 是否出错未知
+	 */
    	@Column(name = "published" )
-	private Long published;
-
+	private String published;
+	/**
+	 * 将recommend类型修改为string 是否出错未知
+	 */
    	@Column(name = "recommend" )
-	private Long recommend;
+	private String recommend;
 
    	@Column(name = "create_time" )
+	@CreatedDate
 	private Date createTime;
 
    	@Column(name = "update_time" )
+	@LastModifiedDate
 	private Date updateTime;
 	/**
 	 *

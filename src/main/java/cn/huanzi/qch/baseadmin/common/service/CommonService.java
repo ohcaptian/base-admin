@@ -28,5 +28,6 @@ public interface CommonService<V, E,T> {
 
      Page<E> findAll(Pageable pageable);
      List<E> findAll();
+     void saveNew(E entityEntity);
 
 }

@@ -168,4 +168,9 @@ public class CommonServiceImpl<V, E, T> implements CommonService<V, E, T> {
         return commonRepository.findAll();
     }
 
+    @Override
+    public void saveNew(E entityEntity) {
+        commonRepository.save(entityEntity);
+    }
+
 }
