@@ -53,8 +53,8 @@ public class BlogController extends CommonController<BlogEntity,BlogEntity,Long>
            return "blog/admin/blogs";
        }
     @PostMapping("blogs/search")  //按条件查询博客
-    public String searchBlogs(BlogEntity blog, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int page, Model model){
-        Pageable pageable = PageRequest.of(page,4);
+    public String searchBlogs(BlogEntity blog, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pageNum, Model model){
+        Pageable pageable = PageRequest.of(pageNum,4);
         List<BlogEntity> allBlog = blogService.searchAllBlog(blog);
         //得到分页结果对象
         model.addAttribute("pageInfo", allBlog);
