@@ -1,0 +1,22 @@
+package com.yin.bolgs.common.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.NoRepositoryBean;
+
+/**
+ * 通用Repository
+ *
+ * @param <E> 实体类
+ * @param <T> id主键类型
+ */
+
+/**
+ * 公共接口不需要实例化
+ * @param <E>
+ * @param <T>
+ */
+@NoRepositoryBean
+public interface CommonRepository<E,T> extends JpaRepository<E,T>, JpaSpecificationExecutor<E> {
+
+}
