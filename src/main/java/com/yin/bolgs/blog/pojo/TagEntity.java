@@ -22,6 +22,7 @@ public class TagEntity  implements Serializable {
 	private static final long serialVersionUID =  4603394724637694155L;
 	@Id
    	@Column(name = "id" )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
    	@Column(name = "name" )
 	private String name;

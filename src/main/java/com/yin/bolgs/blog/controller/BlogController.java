@@ -87,7 +87,7 @@ public class BlogController extends CommonController<BlogEntity,BlogEntity,Long>
         //设置blog中typeId属性
         blog.setTypeId(blog.getType().getId());
         //给blog中的List<Tag>赋值
-        blog.setTags(tagService.getTagByString(blog.getTagIds()));
+        blog.setTags(tagService.getTagByName(blog.getTagIds()));
         if (blog.getId() == null) {   //id为空，则为新增
             blogService.saveNew(blog);
         } else {

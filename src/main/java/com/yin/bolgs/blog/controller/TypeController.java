@@ -20,7 +20,7 @@ public class TypeController {
     private TypeService typeService;
 
     @GetMapping("types")
-    public String types(@RequestParam(required = false,defaultValue = "0",value = "pagenum")int pageNum, Model model){
+    public String types(@RequestParam(required = false,defaultValue = "0",value = "pageNum")int pageNum, Model model){
 //        PageHelper.startPage(pagenum, 5);
 //        List<Type> allType = typeService.getAllType();
 //        //得到分页结果对象

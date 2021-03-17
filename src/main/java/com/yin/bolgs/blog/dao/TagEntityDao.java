@@ -10,5 +10,6 @@ import java.util.List;
  **/
 @Repository
 public interface TagEntityDao extends CommonRepository<TagEntity,Long> {
-           List<TagEntity> findByname(String name);
+            List<TagEntity> findByName(String name);
+            //TagEntity findByname(String name);
 }
