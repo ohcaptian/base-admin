@@ -33,14 +33,12 @@ import java.text.SimpleDateFormat;
 @Component
 public class SafetyAspect {
 
+
     /**
      * Pointcut 切入点
-     * 匹配
-     * cn.huanzi.qch.baseadmin.sys.*.controller、
-     * cn.huanzi.qch.baseadmin.*.controller包下面的所有方法
      */
-    @Pointcut(value = "execution(public * cn.huanzi.qch.baseadmin.sys.*.controller.*.*(..)) || " +
-            "execution(public * cn.huanzi.qch.baseadmin.*.controller.*.*(..))")
+    @Pointcut(value = "execution(public * com.yin.bolgs.sys.*.controller.*.*(..)) || " +
+            "execution(public * com.yin.bolgs.*.controller.*.*(..))")
     public void safetyAspect() {}
 
     /**
