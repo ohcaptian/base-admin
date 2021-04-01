@@ -37,6 +37,9 @@ public class SafetyAspect {
     /**
      * Pointcut 切入点
      */
+    /**
+     * execution：用于匹配方法执行的连接点；
+     */
     @Pointcut(value = "execution(public * com.yin.bolgs.sys.*.controller.*.*(..)) || " +
             "execution(public * com.yin.bolgs.*.controller.*.*(..))")
     public void safetyAspect() {}

@@ -25,6 +25,7 @@ public class Result<T> implements Serializable {
 
     /**
      * 通过静态方法获取实例
+     * public static s与 返回值中间<T>非常重要，可以理解为声明此方法为泛型方法。
      */
     public static <T> Result<T> of(T data) {
         return new Result<>(data);

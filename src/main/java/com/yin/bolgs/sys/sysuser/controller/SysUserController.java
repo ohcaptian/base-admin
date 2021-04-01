@@ -37,9 +37,14 @@ public class SysUserController extends CommonController<SysUserVo, SysUser, Stri
         return new ModelAndView("sys/user/user","initPassword", SysSettingUtil.getSysSetting().getUserInitPassword());
     }
 
+    /**
+     * @deprecated 重置密码
+     * @param sysUserVo
+     * @return
+     */
     @PostMapping("resetPassword")
-    @Decrypt
-    @Encrypt
+//    @Decrypt
+//    @Encrypt
     public Result<SysUserVo> resetPassword(SysUserVo sysUserVo){
         return sysUserService.resetPassword(sysUserVo.getUserId());
     }

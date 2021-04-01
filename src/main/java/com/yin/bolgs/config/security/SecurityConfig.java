@@ -61,6 +61,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordConfig);
     }
 
+    /**
+     * Security配置，登入界面等
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -94,7 +99,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 
                 //无需权限访问
-                .antMatchers("/favicon.ico","/common/**", "/webjars/**", "/getVerifyCodeImage","/error/*","/openApi/*","/admin/**/*").permitAll()
+                .antMatchers("/favicon.ico","/blogs/**","/common/**", "/webjars/**", "/getVerifyCodeImage","/error/*","/openApi/*","/admin/**/*","/front/**/*").permitAll()
 
                 //其他接口需要登录后才能访问
                 .anyRequest().authenticated()

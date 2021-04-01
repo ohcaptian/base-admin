@@ -96,9 +96,17 @@ public class BlogEntity  implements Serializable {
    	@Column(name = "tag_ids",insertable=false,updatable=false)
 	private String tagIds;
 
-	//@ManyToOne(fetch = FetchType.LAZY)
-	@Transient
+
+	/**
+	 * 类别:博客 多个博客对应一个类别，当我们创建表结构时，
+	 * 应在多的一方去维护表关系，也就是说，应将@ManyToOne注解加在中，
+	 * 并且设置为懒加载。
+	 */
+	@ManyToOne(targetEntity = TypeEntity.class)
+	@JoinColumn(name = "type_id")
 	private TypeEntity type;//
+
+
 
 	@Transient
 	private List<TagEntity> tags = new ArrayList<>();//Blog = Tag 多对多
