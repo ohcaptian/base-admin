@@ -67,3 +67,6 @@ spring:
 #是否需要输入验证码
 captcha:
   enable: true
+
+#配置读取设置
+#comment.avatar:

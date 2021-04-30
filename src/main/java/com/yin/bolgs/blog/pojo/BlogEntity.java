@@ -92,7 +92,9 @@ public class BlogEntity  implements Serializable {
 
    	@Column(name = "description" )
 	private String description;
-
+	/**
+	 * 不知会不会出问题
+	 */
    	@Column(name = "tag_ids",insertable=false,updatable=false)
 	private String tagIds;
 
@@ -106,7 +108,12 @@ public class BlogEntity  implements Serializable {
 	@JoinColumn(name = "type_id")
 	private TypeEntity type;//
 
-
+	/**
+	 * 级联保存、更新、删除、刷新;延迟加载。当删除用户，会级联删除该用户的所有文章
+	 * 拥有mappedBy注解的实体类为关系被维护端
+	 */
+	@OneToMany(targetEntity = CommentEntity.class,mappedBy = "blog",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	private List<CommentEntity> commentEntity;
 
 	@Transient
 	private List<TagEntity> tags = new ArrayList<>();//Blog = Tag 多对多
@@ -133,5 +140,10 @@ public class BlogEntity  implements Serializable {
 		}else {
 			return tagIds;
 		}
+	}
+
+	@Override
+	public String toString(){
+		return content;
 	}
 }

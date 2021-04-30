@@ -4,6 +4,7 @@ import com.yin.bolgs.blog.pojo.BlogEntity;
 import com.yin.bolgs.blog.pojo.TagEntity;
 import com.yin.bolgs.blog.pojo.TypeEntity;
 import com.yin.bolgs.blog.service.BlogService;
+import com.yin.bolgs.blog.service.CommentService;
 import com.yin.bolgs.blog.service.TagService;
 import com.yin.bolgs.blog.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.*;
 public class IndexFrontController {
 
     @Autowired
+    private CommentService commentService;
+
+    @Autowired
     private BlogService blogService;
 
     @Autowired
@@ -29,8 +33,8 @@ public class IndexFrontController {
     private TagService tagService;
 
     @GetMapping("index")
-    public String toIndex(@RequestParam(required = false,defaultValue = "1",value = "pageNum")int pageNum, Model model){
-        Pageable pageable = PageRequest.of(pageNum,4);
+    public String toIndex(@RequestParam(required = false,defaultValue = "0",value = "pageNum")int pageNum, Model model){
+        Pageable pageable = PageRequest.of(pageNum,5);
 //        List<BlogEntity> allBlog = blogService.getIndexBlog();
 //        List<TypeEntity> allType = typeService.getBlogType();  //获取博客的类型(联表查询)
 //        List<TagEntity> allTag = tagService.getBlogTag();  //获取博客的标签(联表查询)
@@ -51,7 +55,7 @@ public class IndexFrontController {
     }
 
     @PostMapping("/search")
-    public String search(@RequestParam(required = false,defaultValue = "1",value = "pageNum")int pageNum,
+    public String search(@RequestParam(required = false,defaultValue = "0",value = "pageNum")int pageNum,
                          @RequestParam String query, Model model){
 
         Pageable pageable = PageRequest.of(pageNum,4);
@@ -67,7 +71,9 @@ public class IndexFrontController {
     @GetMapping("/blog/{id}")
     public String toLogin(@PathVariable Long id, Model model){
         //Blog blog = blogService.getDetailedBlog(id);
-        BlogEntity blog=blogService.get(id).getData();
+        model.addAttribute("comments",commentService.selectComment(id));
+        BlogEntity blog=blogService.getAndConvert(id);
+        //System.out.println(blog.getContent());
         model.addAttribute("blog", blog);
         return "blog/front/blog";
     }

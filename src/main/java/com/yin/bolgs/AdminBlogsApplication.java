@@ -36,6 +36,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
 
+
 @EnableJpaAuditing
 @EnableAsync//开启异步调用
 @SpringBootApplication
@@ -59,6 +60,10 @@ public class AdminBlogsApplication {
 @RequestMapping("/")
 @Configuration
 class IndexController {
+
+    static{
+
+    }
 
     @Autowired
     private SysUserService sysUserService;

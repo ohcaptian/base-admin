@@ -108,8 +108,8 @@
                 <!-- 上一页 -->
                 <div class="item">
                   <li th:if="${list.hasPrevious()}">
-                  <a th:href="'/admin/blogs?pageNum=' + ${list.previousPageable().getPageNumber()}" th:text="上一页"></a>
-                </li>
+                    <a th:href="'/admin/blogs?pageNum=' + ${list.previousPageable().getPageNumber()}" th:text="上一页"></a>
+                  </li>
                 </div>
                 <!-- 中间页 -->
                 <div class="item page-item">

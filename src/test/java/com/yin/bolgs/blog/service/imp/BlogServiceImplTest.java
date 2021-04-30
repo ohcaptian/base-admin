@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 /**
  * @author 17694
  * @date 2021/02/13
@@ -32,15 +34,22 @@ public class BlogServiceImplTest {
     @Test
     public void save(){
         BlogEntity blogEntity = new BlogEntity();
-
-        for (int i=0;i<10;i++){
-            blogEntity.setAppreciation("1"+i);
-            blogEntity.setShareStatement("1"+i);
-            blogEntity.setCommentabled("1"+i);
-            blogEntity.setPublished("11"+i);
-            blogEntity.setRecommend("222"+i);
+            blogEntity.setAppreciation("1");
+            blogEntity.setShareStatement("1");
+            blogEntity.setCommentabled("1");
+            blogEntity.setPublished("1");
+            blogEntity.setRecommend("0");
             blogService.saveNew(blogEntity);
-        }
+    }
+    @Test
+    public void selectComment(){
+        System.out.println();
+    }
+    @Test
+    public void findByTagId(){
+        List<BlogEntity> byTagId = blogService.getByTagId("4");
+        byTagId.stream().forEach(System.out::println);
+
     }
 
 

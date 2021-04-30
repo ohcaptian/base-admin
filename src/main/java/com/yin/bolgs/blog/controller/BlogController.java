@@ -77,14 +77,19 @@ public class BlogController extends CommonController<BlogEntity,BlogEntity,Long>
 
     @PostMapping("blogs") //新增、编辑博客
     public String addBlog(BlogEntity blog,RedirectAttributes attributes){
-        //设置user属性
-        //blog.setUser((UserEntity) session.getAttribute("user"));
-        //设置用户id
-        //blog.setUserId(blog.getUser().getId());
-        //设置blog的type
-        //typeService.get(blog.getType().getId());
-        blog.setType(typeService.get(blog.getType().getId()).getData());
-        //设置blog中typeId属性
+
+           if(blog.getAppreciation()==null){
+               blog.setAppreciation("0");
+           }
+        if(blog.getCommentabled()==null){
+            blog.setCommentabled("0");
+        }
+        if(blog.getShareStatement()==null){
+            blog.setShareStatement("0");
+        }
+        if(blog.getRecommend()==null){
+            blog.setRecommend("0");
+        }
         blog.setTypeId(blog.getType().getId());
         //给blog中的List<Tag>赋值
         blog.setTags(tagService.getTagByName(blog.getTagIds()));

@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
 
@@ -22,6 +23,7 @@ public class CommentEntity  implements Serializable {
 
 	@Id
    	@Column(name = "id" )
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
    	@Column(name = "nickname" )
@@ -37,9 +39,10 @@ public class CommentEntity  implements Serializable {
 	private String avatar;
 
    	@Column(name = "create_time" )
+	@CreatedDate
 	private Date createTime;
 
-   	@Column(name = "blog_id" )
+   	@Column(name = "blog_id",insertable=false,updatable=false)
 	private Long blogId;
 
    	@Column(name = "parent_comment_id" )
@@ -48,11 +51,15 @@ public class CommentEntity  implements Serializable {
    	@Column(name = "admincomment" )
 	private Long admincomment;
 
-	//父评论
-	@Transient
-	private CommentEntity parentComment;
-	@Transient
+//	//父评论
+//	@Transient
+//	private CommentEntity parentComment;
+//
+//
+	/**
+	 * 多对一关系
+	 */
+	@ManyToOne(targetEntity=BlogEntity.class)
+	@JoinColumn(name = "blog_id")
 	private BlogEntity blog;
-
-
 }

@@ -5,7 +5,6 @@ package com.yin.bolgs.blog.vo;/**
 
 import com.yin.bolgs.blog.pojo.TagEntity;
 import com.yin.bolgs.blog.pojo.TypeEntity;
-import com.yin.bolgs.blog.pojo.UserEntity;
 import com.yin.bolgs.common.pojo.PageCondition;
 import lombok.Data;
 
@@ -25,7 +24,7 @@ public class BlogVo extends PageCondition {
     private Long typeId;
     private String tagIds;
     private Long userId;
-    private UserEntity user;//多对一
+    //private UserEntity user;//多对一
     private TypeEntity type;//
     private List<TagEntity> tags = new ArrayList<>();
     public void init(){

@@ -4,7 +4,6 @@ package com.yin.bolgs.handler;
  * @date 2021/04/01
  **/
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,6 +23,9 @@ public class MyErrorHandler {
         return mv;
     }
 
-
-
+    public static void main(String[] args) {
+        char abs[] = {'1','2','3'};
+       String abss="dasdasdf";
+        System.out.println(abss.subSequence(1,3));
+    }
 }
